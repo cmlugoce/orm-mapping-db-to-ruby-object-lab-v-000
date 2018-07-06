@@ -1,5 +1,6 @@
 lass Student
-  attr_accessor :id, :name, :grade
+  attr_accessor  :name, :grade
+  attr_reader :id
 
   def self.new_from_db(row)
     student = Student.new
@@ -90,17 +91,6 @@ lass Student
       self.new_from_db(row)
     end
   end
-
-
-
-
-
-
-
-
-
-
-
 
 
   def save
