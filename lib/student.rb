@@ -103,7 +103,17 @@ def self.students_below_12th_grade
   end 
   
   def self.all_students_in_grade_x
-    
+    sql = <<-SQL
+      SELECT *
+      FROM students
+      WHERE grade = ?
+      ORDER BY students.id
+      LIMIT ?
+    SQL
+    DB[:conn].execute(sql,num).map do |row|
+      self.new_from_db(row)
+    end
+  end
   
   def self.drop_table
     sql = "DROP TABLE IF EXISTS students"
